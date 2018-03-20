@@ -1,6 +1,6 @@
 import { glob, open } from './utils'
 import ResultFactory from './factories/ResultFactory'
-import kd from './analyzers/kd'
+import analyzers from './analyzers'
 
 const loadLogAsync = async () => {
   try {
@@ -12,6 +12,4 @@ const loadLogAsync = async () => {
   }
 }
 
-loadLogAsync().then(res => {
-  kd(res) |> console.log
-})
+loadLogAsync().then(res => res |> analyzers)
