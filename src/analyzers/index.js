@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import Table from '@maxmellon/cli-table'
-
+import Table from '@maxmellon/cli-table' 
 const m = 100
 
 const reducer = r => (
@@ -19,13 +18,13 @@ const reducer = r => (
 const values = d => {
   let rate = d.win / (d.win + d.lose) * 100
   if (_.isNaN(rate)) {
-    rate = d.status.key === 'victory' ? '100' : '0'
+    rate = d.status.key === 'victory' ? 100 : 0
   }
   return [
     d.battleNum || 1,
     Math.floor( d.count.kill / d.count.death * m) / m,
     Math.floor((d.count.kill + d.count.assist) / d.count.death * m) / m,
-    rate,
+    Math.floor(rate * 100 / 100) + '%',
   ]
 }
 
