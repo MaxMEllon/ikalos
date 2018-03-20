@@ -2,12 +2,12 @@ import fs from 'fs'
 import g from 'glob'
 
 export const glob = () => {
-  return new Promise((resolve, reject) => (
+  return new Promise((resolve, reject) =>
     g(`data/${'*'}.json`, (err, files) => {
       if (err) reject(err)
       resolve(files)
     })
-  ))
+  )
 }
 
 export const open = path => {

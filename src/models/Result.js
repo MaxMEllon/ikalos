@@ -7,9 +7,10 @@ export default class Result {
       id: obj.battle_number,
       rule: obj.rule,
       status: obj.my_team_result,
+      weapon: obj.player_result.player.weapon.name,
       stage: {
         id: obj.stage.id,
-        name: obj.stage.name,
+        name: obj.stage.name
       },
       count: {
         kill: obj.player_result.kill_count,
@@ -17,7 +18,7 @@ export default class Result {
         special: obj.player_result.special_count,
         assist: obj.player_result.assist_count,
         paint: obj.player_result.game_paint_point,
-        sort: obj.player_result.sort_score,
+        sort: obj.player_result.sort_score
       }
     }
   }
