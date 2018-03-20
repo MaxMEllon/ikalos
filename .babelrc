@@ -1,0 +1,6 @@
+{
+  "presets": [
+    "module:@maxmellon/babel-preset/node"
+  ]
+}
+
