@@ -20,11 +20,11 @@ const values = d => {
     rate = d.status.key === 'victory' ? 100 : 0
   }
   return [
-    d.battleNum || 1,
+    Math.floor(rate * 100 / 100) + '%',
     Math.floor(d.count.kill / d.count.death * m) / m,
     Math.floor((d.count.kill + d.count.assist) / d.count.death * m) / m,
     Math.floor(d.count.kill / (d.battleNum || 1) * m) / m,
-    Math.floor(rate * 100 / 100) + '%'
+    d.battleNum || 1,
   ]
 }
 
@@ -32,7 +32,7 @@ export default data => {
   _.forEach(data, (i, rule) => {
     console.log(rule)
     const table = new Table({
-      head: ['Stage', 'Waepon', 'BattleNum', 'k/d', 'k+a/d', 'k/battle', 'WinRate']
+      head: ['Stage', 'Weapon', 'WinRate', 'k/d', 'k+a/d', 'k/battle', 'BattleNum']
     })
     _.forEach(i, (j, stage) =>
       _.forEach(
@@ -48,7 +48,7 @@ export default data => {
   })
 
   const table = new Table({
-    head: ['BattleNum', 'k/d', 'k+a/d', 'k/battle', 'WinRate']
+    head: ['WinRate', 'k/d', 'k+a/d', 'k/battle', 'BattleNum']
   })
 
   console.log('合計')
