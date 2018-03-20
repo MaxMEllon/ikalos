@@ -25,4 +25,8 @@ export default class Result {
   get id() {
     return this.record.id
   }
+
+  get startAt() {
+    return this.record.startAt
+  }
 }

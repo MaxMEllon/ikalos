@@ -6,10 +6,11 @@ const collection = []
 collection.has = result => collection.find(d => d.id === result.id) ? true : false
 
 collection.toObj = () => (
-  collection.map(r => Object.assign({}, r.record))
+  // deep clone
+  collection.map(r => r.record |> JSON.stringify |> JSON.parse)
 )
 
-const byRule = r => r.rule.key
+const byRule = r => r.rule.name
 const byStage = r => r.stage.name
 
 collection.grouping = () => {
@@ -17,6 +18,11 @@ collection.grouping = () => {
   const tmp = _.groupBy(collection.toObj(), byRule)
   Object.keys(tmp).forEach(key => {
     group[key] = _.groupBy(tmp[key], byStage)
+  })
+  Object.defineProperty(group, 'flatten', {
+    value: () => collection.toObj(),
+    writable: false,
+    enumerable: false
   })
   return group
 }

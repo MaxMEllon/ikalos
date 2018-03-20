@@ -1,16 +1,17 @@
 import { glob, open } from './utils'
 import ResultFactory from './factories/ResultFactory'
+import kd from './analyzers/kd'
 
-
-const loadLog = async () => {
+const loadLogAsync = async () => {
   try {
     const promises = (await glob()).map(async f => await f |> open)
     const data = (await Promise.all(promises)).map(d => d |> JSON.parse)
-    const results = ResultFactory.create(data)
-    console.log(results.grouping())
+    return ResultFactory.create(data).grouping()
   } catch (err) {
     console.error(err)
   }
 }
 
-loadLog()
+loadLogAsync().then(res => {
+  kd(res) |> console.log
+})
